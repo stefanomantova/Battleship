@@ -1,21 +1,21 @@
-class Ship{
+module.exports = class Ship{
 
-constructor(length, hitPositions, isSunk){
+constructor(length, coordinates, hitPositions){
 this.length = length;
-this.hitPositions = hitPositions;
-this.isSunk = isSunk;
+this.coordinates = coordinates; //array
+this.hitPositions = hitPositions; //array
+this.isSunk = () =>{
+    if(this.hitPositions.length == this.length){
+    return true;
+}else{
+    return false;
+}
+}
+
 }
 
 hit(number){
-    return;
+    (this.hitPositions).push(number);
 }
-
-isSunk(){
-    return;
-}
-
-
-
-
 
 }

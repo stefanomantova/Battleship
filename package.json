@@ -1,0 +1,22 @@
+{
+  "name": "battleship",
+  "version": "1.0.0",
+  "description": "A JS Front End project to exercise TDD",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stefanomantova/Battleship.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/stefanomantova/Battleship/issues"
+  },
+  "homepage": "https://github.com/stefanomantova/Battleship#readme",
+  "dependencies": {
+    "jest": "^27.5.0"
+  }
+}
