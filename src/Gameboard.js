@@ -20,11 +20,11 @@ constructor(height,width){
 placeShip(ship,coordX,coordY){
 //checkAvailablePosition(ship, coordX, coordY) ---> must be called in APP function before placeShip()
     if(ship.orientation == 'horizontal'){
-    for(let i = coordY; i< ship.length;i++){
+    for(let i = coordY; i<= ship.length;i++){
         this.board[coordX][i] = ship.id;
       }
     }else if(ship.orientation == 'vertical'){
-        for(let i = coordX; i< ship.length;i++){
+        for(let i = coordX; i<= ship.length;i++){
             this.board[i][coordY]= ship.id;
             }
         }
@@ -37,7 +37,7 @@ placeShip(ship,coordX,coordY){
 checkAvailablePosition(ship, coordX, coordY){
     let isAvailable;
 if(ship.orientation == 'horizontal'){
-    for(let i = coordY; i< ship.length;i++){
+    for(let i = coordY, j = 0; j< ship.length;i++,j++){
       if(this.board[coordX][i] == 0){
           isAvailable = true;
       }else{
@@ -48,7 +48,7 @@ if(ship.orientation == 'horizontal'){
       return isAvailable;
       
     }else if(ship.orientation == 'vertical'){
-        for(let i = coordX; i< ship.length;i++){
+        for(let i = coordX, j = 0; j< ship.length;i++,j++){
             if(this.board[i][coordY] == 0){
                 isAvailable = true;
             }else{
