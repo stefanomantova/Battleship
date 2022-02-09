@@ -121,12 +121,64 @@ test("Ship has been correctly placed on 1,2 vertically (size 2). 3,0(size 3) sho
 
 })
 
-test("Ship has been hit on 3,1 - length 2 horizontal",()=>{
+test("Ship has been hit on 3,2 - length 2 horizontal",()=>{
     let testBoard = new Gameboard(5,5);
     testBoard.generateBoard();
     let testShips = []; testShips.push(new Ship(2,[3,1],[],1,'horizontal')); testShips.push(new Ship(2,[4,1],[],2,'horizontal'))
     testBoard.placeShip(testShips[0],testShips[0].coordinates[0],testShips[0].coordinates[1]);
     testBoard.receiveAttack(3,2,testShips);
-    expect (testShips[0].hitPositions).toContainEqual(3,2);
+    expect (testShips[0].hitPositions).toContainEqual([3,2]);
 
 })
+
+test("Shot miss on 2,2!!",()=>{
+    let testBoard = new Gameboard(5,5);
+    testBoard.generateBoard();
+    let testShips = []; testShips.push(new Ship(2,[3,1],[],1,'horizontal')); testShips.push(new Ship(2,[4,1],[],2,'horizontal'));
+    testBoard.placeShip(testShips[0],testShips[0].coordinates[0],testShips[0].coordinates[1]);testBoard.placeShip(testShips[1],testShips[1].coordinates[0],testShips[1].coordinates[1]);
+    testBoard.receiveAttack(2,2,testShips);
+    expect (testShips[0].hitPositions).toHaveLength(0);
+
+})
+
+test("Ship 2 is not sunk!",()=>{
+    let testBoard = new Gameboard(5,5);
+    testBoard.generateBoard();
+    let testShips = []; testShips.push(new Ship(2,[3,1],[],1,'horizontal')); testShips.push(new Ship(2,[4,1],[],2,'horizontal'));
+    testBoard.placeShip(testShips[0],testShips[0].coordinates[0],testShips[0].coordinates[1]);testBoard.placeShip(testShips[1],testShips[1].coordinates[0],testShips[1].coordinates[1]);
+    testBoard.receiveAttack(3,1,testShips);
+    testBoard.receiveAttack(3,2,testShips);
+    testBoard.receiveAttack(2,2,testShips);
+    expect (testBoard.allSunk(testShips)).toBe(false);
+
+})
+
+test("All ships are sunk!",()=>{
+    let testBoard = new Gameboard(5,5);
+    testBoard.generateBoard();
+    let testShips = []; testShips.push(new Ship(2,[3,1],[],1,'horizontal')); testShips.push(new Ship(2,[4,1],[],2,'horizontal'));
+    testBoard.placeShip(testShips[0],testShips[0].coordinates[0],testShips[0].coordinates[1]);testBoard.placeShip(testShips[1],testShips[1].coordinates[0],testShips[1].coordinates[1]);
+    testBoard.receiveAttack(3,1,testShips);
+    testBoard.receiveAttack(3,2,testShips);
+    testBoard.receiveAttack(2,2,testShips);
+    testBoard.receiveAttack(4,2,testShips);
+    testBoard.receiveAttack(4,1,testShips);
+    expect (testBoard.allSunk(testShips)).toBe(true);
+
+})
+
+test("Ship 1 not sunk!",()=>{
+    let testBoard = new Gameboard(5,5);
+    testBoard.generateBoard();
+    let testShips = []; testShips.push(new Ship(2,[3,1],[],1,'horizontal')); testShips.push(new Ship(2,[4,1],[],2,'horizontal'));
+    testBoard.placeShip(testShips[0],testShips[0].coordinates[0],testShips[0].coordinates[1]);testBoard.placeShip(testShips[1],testShips[1].coordinates[0],testShips[1].coordinates[1]);
+    testBoard.receiveAttack(3,1,testShips);
+    testBoard.receiveAttack(2,2,testShips);
+    testBoard.receiveAttack(4,2,testShips);
+    testBoard.receiveAttack(4,1,testShips);
+    expect (testBoard.allSunk(testShips)).toBe(false);
+
+})
+
+
+

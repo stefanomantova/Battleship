@@ -61,19 +61,26 @@ if(ship.orientation == 'horizontal'){
 receiveAttack(coordX, coordY, ships){
     if(this.board[coordX][coordY] == 0){
         //miss
-        this.board.hittedCoordinates.push([coordX,coordY]);
+        this.hittedCoordinates.push([coordX,coordY]);
     }else{
         for(let i in ships){
             if(this.board[coordX][coordY] == ships[i].id){
-            this.board.hittedCoordinates.push([coordX,coordY]);
-            ships[i].hit(this.board[coordX][coordY]);
+            this.hittedCoordinates.push([coordX,coordY]);
+            ships[i].hit([coordX,coordY]);
             break;
             }
         }
     }
 }
 
-allSunk(){
+allSunk(ships){
+for(let i in ships){
+    if(!(ships[i].isSunk())){
+        return false;
+    }
+}
+return true;
+
 
 }
 
