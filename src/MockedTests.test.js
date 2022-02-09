@@ -120,3 +120,13 @@ test("Ship has been correctly placed on 1,2 vertically (size 2). 3,0(size 3) sho
     expect (testBoard.checkAvailablePosition(secondShip,3,0)).toBe(true);
 
 })
+
+test("Ship has been hit on 3,1 - length 2 horizontal",()=>{
+    let testBoard = new Gameboard(5,5);
+    testBoard.generateBoard();
+    let testShips = []; testShips.push(new Ship(2,[3,1],[],1,'horizontal')); testShips.push(new Ship(2,[4,1],[],2,'horizontal'))
+    testBoard.placeShip(testShips[0],testShips[0].coordinates[0],testShips[0].coordinates[1]);
+    testBoard.receiveAttack(3,2,testShips);
+    expect (testShips[0].hitPositions).toContainEqual(3,2);
+
+})

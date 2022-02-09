@@ -7,6 +7,7 @@ constructor(height,width){
     this.width = width;
     this.hittedCoordinates = [];
     this.board = [];
+     //Check if necessary to initialize ships before gameboard
     this.generateBoard = () =>{
         for(let y=0;y<this.height;y++){
         this.board[y] = [];    
@@ -57,12 +58,18 @@ if(ship.orientation == 'horizontal'){
 }
 }
 
-receiveAttack(coordX, coordY){
+receiveAttack(coordX, coordY, ships){
     if(this.board[coordX][coordY] == 0){
         //miss
         this.board.hittedCoordinates.push([coordX,coordY]);
     }else{
-        hit(this.board[coordX][coordY])
+        for(let i in ships){
+            if(this.board[coordX][coordY] == ships[i].id){
+            this.board.hittedCoordinates.push([coordX,coordY]);
+            ships[i].hit(this.board[coordX][coordY]);
+            break;
+            }
+        }
     }
 }
 

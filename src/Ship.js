@@ -16,8 +16,8 @@ this.isSunk = () =>{
 
 }
 
-hit(shipId){
-    (this.hitPositions).push(number);
+hit(coordinates){
+    (this.hitPositions).push(coordinates);
 }
 
 }
