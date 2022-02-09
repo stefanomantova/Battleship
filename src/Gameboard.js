@@ -31,9 +31,6 @@ placeShip(ship,coordX,coordY){
       
     }
 
-
-
-
 checkAvailablePosition(ship, coordX, coordY){
     let isAvailable;
 if(ship.orientation == 'horizontal'){
@@ -59,6 +56,20 @@ if(ship.orientation == 'horizontal'){
             return isAvailable;
 }
 }
+
+receiveAttack(coordX, coordY){
+    if(this.board[coordX][coordY] == 0){
+        //miss
+        this.board.hittedCoordinates.push([coordX,coordY]);
+    }else{
+        hit(this.board[coordX][coordY])
+    }
+}
+
+allSunk(){
+
+}
+
 }
 
 

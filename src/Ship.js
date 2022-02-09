@@ -16,7 +16,7 @@ this.isSunk = () =>{
 
 }
 
-hit(number){
+hit(shipId){
     (this.hitPositions).push(number);
 }
 
