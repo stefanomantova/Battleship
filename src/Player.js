@@ -10,10 +10,15 @@ playerTurn(coordX,coordY,enemy){
     if(this.playerType = 'person'){
         receiveAttack(coordX,coordY,enemy);
     }else if(this.playerType = 'computer'){
-        let pcCoordX; let pcCoordY;
-        //do random coordinates while one or both coords are contained in gameboard.hittedCoordinates[];
+        do{
+        let pcCoordX = Math.floor(Math.random() * this.gameboard.height);
+        let pcCoordY = Math.floor(Math.random() * this.gameboard.width);
+        }while(enemy.gameboard.hittedCoordinates.includes([pcCoordX,pcCoordY]));
+        receiveAttack(pcCoordX,pcCoordY,enemy);
+        //do random c°oordinates while one or both coords are contained in gameboard.hittedCoordinates[];
     }
 }
+
 
 
 }
