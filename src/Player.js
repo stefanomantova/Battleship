@@ -1,4 +1,7 @@
-class Player{
+let Gameboard = require('./Gameboard.js');
+
+
+module.exports = class Player{
 constructor(id,ships,gameboard,playerType){
     this.id = id;
     this.ships = ships;
@@ -7,15 +10,16 @@ constructor(id,ships,gameboard,playerType){
 }
 
 playerTurn(coordX,coordY,enemy){
-    if(this.playerType = 'person'){
-        receiveAttack(coordX,coordY,enemy);
-    }else if(this.playerType = 'computer'){
+    if(this.playerType == 'person'){
+        enemy.gameboard.receiveAttack(coordX,coordY,enemy.ships);
+    }else if(this.playerType == 'computer'){
+        let pcCoordX,pcCoordY;
         do{
-        let pcCoordX = Math.floor(Math.random() * this.gameboard.height);
-        let pcCoordY = Math.floor(Math.random() * this.gameboard.width);
+        pcCoordX = Math.floor(Math.random() * this.gameboard.height);
+        pcCoordY = Math.floor(Math.random() * this.gameboard.width);
         }while(enemy.gameboard.hittedCoordinates.includes([pcCoordX,pcCoordY]));
-        receiveAttack(pcCoordX,pcCoordY,enemy);
-        //do random c°oordinates while one or both coords are contained in gameboard.hittedCoordinates[];
+        enemy.gameboard.receiveAttack(pcCoordX,pcCoordY,enemy.ships);
+        //do random coordinates while one or both coords are contained in gameboard.hittedCoordinates[];
     }
 }
 

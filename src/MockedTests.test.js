@@ -1,5 +1,6 @@
 let  Ship = require ('./Ship.js');
 let Gameboard = require('./Gameboard.js');
+let Player = require('./Player.js');
 
 
 
@@ -180,5 +181,37 @@ test("Ship 1 not sunk!",()=>{
 
 })
 
+test("player1 attacks ship from player2",()=>{
+    let testBoard1 = new Gameboard(5,5);
+    let testBoard2 = new Gameboard(5,5);
+    testBoard1.generateBoard();
+    testBoard2.generateBoard();
+    let testShips1 = []; testShips1.push(new Ship(2,[3,1],[],1,'horizontal')); testShips1.push(new Ship(2,[4,1],[],2,'horizontal'));
+    let testShips2 = []; testShips2.push(new Ship(2,[3,1],[],3,'horizontal')); testShips2.push(new Ship(2,[4,1],[],4,'horizontal'));
+    testBoard1.placeShip(testShips1[0],testShips1[0].coordinates[0],testShips1[0].coordinates[1]);testBoard1.placeShip(testShips1[1],testShips1[1].coordinates[0],testShips1[1].coordinates[1]);
+    testBoard2.placeShip(testShips2[0],testShips2[0].coordinates[0],testShips2[0].coordinates[1]);testBoard2.placeShip(testShips2[1],testShips2[1].coordinates[0],testShips2[1].coordinates[1]);
+
+    let player1 = new Player(0, testShips1,testBoard1,'person');
+    let player2 = new Player(1,testShips2,testBoard2,'computer');
+    player1.playerTurn(3,1,player2);
+    expect(testShips2[0].hitPositions).toContainEqual([3,1]);
+})
+
+test.only("player2 attacks in player1 gamboard",()=>{
+    let testBoard1 = new Gameboard(5,5);
+    let testBoard2 = new Gameboard(5,5);
+    testBoard1.generateBoard();
+    testBoard2.generateBoard();
+    let testShips1 = []; testShips1.push(new Ship(2,[3,1],[],1,'horizontal')); testShips1.push(new Ship(2,[4,1],[],2,'horizontal'));
+    let testShips2 = []; testShips2.push(new Ship(2,[3,1],[],3,'horizontal')); testShips2.push(new Ship(2,[4,1],[],4,'horizontal'));
+    testBoard1.placeShip(testShips1[0],testShips1[0].coordinates[0],testShips1[0].coordinates[1]);testBoard1.placeShip(testShips1[1],testShips1[1].coordinates[0],testShips1[1].coordinates[1]);
+    testBoard2.placeShip(testShips2[0],testShips2[0].coordinates[0],testShips2[0].coordinates[1]);testBoard2.placeShip(testShips2[1],testShips2[1].coordinates[0],testShips2[1].coordinates[1]);
+
+    let player1 = new Player(0, testShips1,testBoard1,'person');
+    let player2 = new Player(1,testShips2,testBoard2,'computer');
+    player2.playerTurn(3,1,player1);
+    console.log(player1.gameboard.hittedCoordinates);
+    expect(player1.gameboard.hittedCoordinates).toBeDefined();
+})
 
 
