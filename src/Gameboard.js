@@ -1,6 +1,6 @@
-let  Ship = require ('./Ship.js');
+import {Ship} from './Ship.js';
 
-module.exports = class Gameboard{
+export class Gameboard{
 
 constructor(height,width){
     this.height = height;

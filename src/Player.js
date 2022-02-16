@@ -1,7 +1,7 @@
 let Gameboard = require('./Gameboard.js');
 
 
-module.exports = class Player{
+export class Player{
 constructor(id,ships,gameboard,playerType){
     this.id = id;
     this.ships = ships;

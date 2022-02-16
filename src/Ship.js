@@ -1,4 +1,4 @@
-module.exports = class Ship{
+export class Ship{
 
 constructor(length, coordinates, hitPositions,id, orientation){
 this.length = length;

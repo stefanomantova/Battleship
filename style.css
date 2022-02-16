@@ -1,0 +1,45 @@
+#board1{
+    display: grid;
+    grid-template-columns: 80px 80px 80px 80px 80px 80px 80px; 
+    grid-auto-rows: 80px;
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        -ms-transform: translateY(-50%);
+        transform: translateY(-50%);
+        left: 10%;
+      
+}
+
+#board2{
+    display: grid;
+    grid-template-columns: 80px 80px 80px 80px 80px 80px 80px; 
+    grid-auto-rows: 80px;
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        -ms-transform: translateY(-50%);
+        transform: translateY(-50%);
+        right: 10%;
+      
+}
+
+.box {
+    background-color: #d9d9d9;
+    border: 2px solid black;
+    cursor: pointer;
+   
+   }
+
+#Start{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 10px;
+    height: 10px;
+}
+
+#startButton{
+    width: max-content;
+    height: max-content;
+}
