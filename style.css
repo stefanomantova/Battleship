@@ -42,4 +42,21 @@
 #startButton{
     width: max-content;
     height: max-content;
+    position: absolute;
+    justify-items: center;
 }
+
+#buttonSend{
+    width: max-content;
+    height: max-content;
+}
+
+#placeShipDiv{
+    position: absolute;
+    right: 50%;
+    top: 30%;
+    justify-content: center;
+    border: 2px solid black;
+
+}
+

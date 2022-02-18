@@ -1,4 +1,4 @@
-let Gameboard = require('./Gameboard.js');
+import {Gameboard} from'./Gameboard.js';
 
 
 export class Player{
