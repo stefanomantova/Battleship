@@ -1,3 +1,7 @@
+import {Ship} from './Ship.js';
+import {Gameboard} from './Gameboard.js';
+import {Player} from './Player.js'
+
 const body = document.body;
 
 function createInterfaceBoard(boardSize){
@@ -139,19 +143,30 @@ function sendInfoToPlaceShip(){
 
     return shipCoordinates;
 }
-
-function markAsPlaced(shipCoords,player){
+//Need to figure out how to pass all ship coords here
+function markAsPlaced(ship,playerType){
     let playerBoard;
-    if(player == 'person'){
-    playerBoard = document.getElementById('board'+1);
+    if(playerType == 'person'){
+    playerBoard = 1;  
     }else{
-    playerBoard = document.getElementById('board'+2);
+    playerBoard = 2;
     }
 
-    for(let i in shipCoords){
+    if(ship.orientation == 'horizontal'){
+        for(let i = ship.coordinates[1]; i<= ship.length;i++){
+            document.getElementById([ship.coordinates[0],[i]]).style.backgroundColor = 'blue';
+            document.getElementById([ship.coordinates[0],[i]]).value = `${ship.id}`;
 
-    }
+          }
+        
+        }else if(ship.orientation == 'vertical'){
+            for(let i = ship.coordinates[0]; i<= ship.length;i++){
+                document.getElementById([[i],ship.coordinates[1]]).style.backgroundColor = 'blue';
+                document.getElementById([[i],ship.coordinates[1]]).value = `${ship.id}`;
 
+              }
+            }
+  
 }
 
-export {createInterfaceBoard,placeShipForm,sendInfoToPlaceShip};
+export {createInterfaceBoard,placeShipForm,sendInfoToPlaceShip,markAsPlaced};

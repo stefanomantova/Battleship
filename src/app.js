@@ -1,6 +1,6 @@
 import  {Ship} from './Ship.js';
 import {Gameboard} from './Gameboard.js';
-import {createInterfaceBoard,placeShipForm, sendInfoToPlaceShip} from './domInteraction.js';
+import {createInterfaceBoard,placeShipForm, sendInfoToPlaceShip,markAsPlaced} from './domInteraction.js';
 import {Player} from './Player.js'
 
 
@@ -33,12 +33,13 @@ async function executeGame(){
           let currentShipInfo;
           let currentShip;
         currentShipInfo = sendInfoToPlaceShip();
-        currentShip = new Ship(shipSize,[currentShipInfo.coordX,currentShipInfo.coordY],0,0,currentShipInfo.orient);
+        currentShip = new Ship(shipSize,[currentShipInfo.coordX,currentShipInfo.coordY],[],0,currentShipInfo.orient);
         if(playerPerson.gameboard.checkAvailablePosition(currentShip,currentShipInfo.coordX,currentShipInfo.coordY)){
           isValidShip = true;
-          currentShip.id = (shipIndex+1);
+          currentShip.id = (shipIndex)+1;
       playerPerson.ships[shipIndex] = currentShip;
       playerPerson.gameboard.placeShip(currentShip,currentShipInfo.coordX,currentShipInfo.coordY);
+      markAsPlaced(currentShip,playerPerson.playerType);
     shipSize--;shipIndex++;
         }else{
           alert("Invalid position!");
